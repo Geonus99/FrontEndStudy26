@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 기본 배열 전개
+const numbers = [1, 2, 3];
+const newNumbers = [...numbers]; // 배열 복사
+
+console.log(numbers); // [1, 2, 3]
+console.log(newNumbers); // [1, 2, 3]
+console.log(numbers === newNumbers); // false (다른 배열)
+
+// 배열 합치기
+const fruits = ['사과', '바나나'];
+const vegetables = ['당근', '양파'];
+const foods = [...fruits, ...vegetables];
+
+console.log(foods); // ['사과', '바나나', '당근', '양파']
+
+// 배열에 새 요소 추가
+const originalArray = [1, 2, 3];
+const extendedArray = [...originalArray, 4, 5];
+
+console.log(extendedArray); // [1, 2, 3, 4, 5]
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // 고급 쇼핑카트 객체
+const shoppingCart = {
+ items: [],
+
+ // 상품 추가 메소드
+ addItem(name, price, quantity = 1) {
+ const existingItem = this.items.find(item => item.name === name);
+
+ if (existingItem) {
+ existingItem.quantity += quantity;
+ console.log(`${name} 수량이 ${quantity}개 추가되었습니다.`);
+ } else {
+ this.items.push({ name, price, quantity });
+ console.log(`${name}이(가) 장바구니에 추가되었습니다.`);
+ }
+ return this;
+ },
+
+ // 상품 제거 메소드
+ removeItem(name) {
+ const index = this.items.findIndex(item => item.name === name);
+ if (index !== -1) {
+ this.items.splice(index, 1);
+ console.log(`${name}이(가) 장바구니에서 제거되었습니다.`);
+ }
+ return this;
+ },
+
+ // 총 금액 계산 메소드
+ getTotalPrice() {
+ return this.items.reduce((total, item) => {
+ return total + (item.price * item.quantity);
+ }, 0);
+ },
+
+ // 장바구니 내용 출력 메소드
+ showCart() {
+ console.log("\n=== 장바구니 내용 ===");
+ if (this.items.length === 0) {
+ console.log("장바구니가 비어있습니다.");
+ return this;
+ }
+
+ this.items.forEach(item => {
+ console.log(`${item.name} - ${item.price}원 x ${item.quantity}개 = ${item.price * item.quantity}원`);
+ });
+ console.log(`총 금액: ${this.getTotalPrice()}원`);
+ return this;
+ },
+
+ // 장바구니 비우기 메소드
+ clearCart() {
+ this.items = [];
+ console.log("장바구니가 비워졌습니다.");
+ return this;
+ }
+};
+
+// 쇼핑 시뮬레이션
+shoppingCart
+ .addItem("노트북", 1200000, 1)
+ .addItem("마우스", 50000, 2)
+ .addItem("키보드", 80000, 1)
+ .showCart()
+ .removeItem("마우스")
+ .showCart();
+
+</script>
+</body>
+</html>

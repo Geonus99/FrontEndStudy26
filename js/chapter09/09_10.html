@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+let count = 0;
+
+function increment() {
+ count++;
+ console.log("현재 카운트:", count);
+}
+
+function reset() {
+ count = 0;
+ console.log("카운트 리셋됨");
+}
+
+// 개선된 예 - 클로저 활용
+function createCounter() {
+ let count = 0; // 은닉된 변수
+
+ return {
+ increment: function() {
+ count++;
+ console.log("현재 카운트:", count);
+ },
+ reset: function() {
+ count = 0;
+ console.log("카운트 리셋됨");
+ },
+ getCount: function() {
+ return count;
+ }
+ };
+}
+
+const counter = createCounter();
+counter.increment(); // 1
+counter.increment(); // 2
+console.log(counter.getCount()); // 2
+
+</script>
+</body>
+</html>

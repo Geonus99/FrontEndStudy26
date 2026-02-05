@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // 사용자 정보 관리 예제
+const users = [
+ {id: 1, name: '김개발', department: '개발팀'},
+ {id: 2, name: '이디자인', department: '디자인팀'}
+];
+
+// 새 사용자 추가
+const newUser = {id: 3, name: '최기획', department: '기획팀'};
+const updatedUsers = [...users, newUser];
+
+console.log('사용자 추가 후:', updatedUsers);
+
+// 특정 사용자 정보 수정
+const updateUserInfo = (userList, userId, newInfo) => {
+ return userList.map(user =>
+ user.id === userId
+ ? {...user, ...newInfo} // 전개 연산자로 정보 병합
+ : user
+ );
+};
+
+const modifiedUsers = updateUserInfo(updatedUsers, 1, {
+ name: '김개발',
+ department: '개발팀',
+ position: '주니어 개발자'
+});
+
+console.log('정보 수정 후:', modifiedUsers);
+
+// 함수 인자로 배열 전개
+const calculateSum = (a, b, c) => a + b + c;
+const numberArray = [10, 20, 30];
+
+console.log(calculateSum(...numberArray)); // 60
+
+  // 얕은 복사 주의사항
+const complexObject = {
+ name: '김개발',
+ skills: ['HTML', 'CSS', 'JavaScript']
+};
+
+const copiedObject = {...complexObject};
+copiedObject.skills.push('Vue.js');
+
+console.log(complexObject.skills); // ['HTML', 'CSS', 'JavaScript', 'Vue.js']
+// 원본도 변경됨!
+</script>
+</body>
+</html>

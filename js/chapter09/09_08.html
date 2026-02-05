@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // 학생 정보를 관리하는 배열
+let studentNames = [];
+let studentScores = [];
+
+// 학생 추가 함수
+function addStudent(name, score) {
+ studentNames.push(name); // 배열 끝에 요소 추가
+ studentScores.push(score);
+ console.log(`${name} 학생이 추가되었습니다. (점수: ${score}점)`);
+}
+
+// 학생 목록 출력 함수
+function showAllStudents() {
+ console.log('\n=== 전체 학생 목록 ===');
+ for (let i = 0; i < studentNames.length; i++) {
+ console.log(`${i + 1}. ${studentNames[i]}: ${studentScores[i]}점`);
+ }
+}
+
+// 특정 학생 검색 함수
+function findStudent(name) {
+ for (let i = 0; i < studentNames.length; i++) {
+ if (studentNames[i] === name) {
+ return {
+ index: i,
+ name: studentNames[i],
+ score: studentScores[i]
+ };
+ }
+ }
+ return null; // 찾지 못한 경우
+}
+
+// 실제 사용 예제
+addStudent('김철수', 85);
+addStudent('이영희', 92);
+addStudent('박민수', 78);
+addStudent('최지원', 88);
+
+showAllStudents();
+
+// 특정 학생 검색
+let result = findStudent('이영희');
+if (result) {
+ console.log(`\n검색 결과: ${result.name} - ${result.score}점`);
+} else {
+ console.log('\n해당 학생을 찾을 수 없습니다.');
+}
+
+</script>
+</body>
+</html>
